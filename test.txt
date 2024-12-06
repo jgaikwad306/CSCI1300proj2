@@ -1,0 +1,3 @@
+if(first_half == true){
+    if (rand()*100<25)
+}
