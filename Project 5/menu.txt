@@ -1,0 +1,67 @@
+void displayMenu() {
+    cout << "Game Menu:\n";
+    cout << "1. Check Player Progress\n";
+    cout << "2. Review Character\n";
+    cout << "3. Check Position\n";
+    cout << "4. Review Your Advisor\n";
+    cout << "5. Move Forward\n";
+    cout << "6. Exit Game\n";
+    cout << "Enter your choice: ";
+}
+
+void handleMenuOption(int option, Game& gameInstance, Board& gameBoard) {
+    switch (option) {
+        case 1:
+            cout << "1. Review Pride Points\n";
+            cout << "2. Review Leadership Traits\n";
+            // Call methods to display the respective stats.
+            break;
+
+        case 2:
+            cout << "1. Display Character Name\n";
+            cout << "2. Display Character Age\n";
+            // Call methods to display character details.
+            break;
+
+        case 3:
+            gameBoard.displayBoard(); // Display the board to show current positions.
+            break;
+
+        case 4:
+            cout << "1. Check Advisor Name\n";
+            cout << "2. Display Advisor Ability\n";
+            // Call methods to show advisor details and confirm ability usage.
+            break;
+
+        case 5:
+            cout << "Enter steps to move forward:\n";
+            // Implement move logic here.
+            break;
+
+        case 6:
+            cout << "Exiting game. Goodbye!\n";
+            exit(0);
+
+        default:
+            cout << "Invalid option. Please try again.\n";
+    }
+}
+
+int main() {
+    srand(time(0)); // Seed the random number generator
+
+    Game gameInstance;
+    gameInstance.welcome();
+
+    Board gameBoard(gameInstance.getNumPlayers());
+    gameBoard.assignEventsToTiles();
+
+    while (true) {
+        displayMenu();
+        int option;
+        cin >> option;
+        handleMenuOption(option, gameInstance, gameBoard);
+    }
+
+    return 0;
+}
