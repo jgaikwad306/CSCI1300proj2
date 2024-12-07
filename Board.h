@@ -15,7 +15,7 @@ private:
    static const int _MAX_PLAYERS = 2;
    int _player_count;
    int _player_position[_MAX_PLAYERS];
-   void displayTile(int player_index, int pos);
+   void displayTile(int player_index, int pos, int path);
    void initializeTiles(int player_index);
    bool isPlayerOnTile(int player_index, int pos);
 int _tileEvents[2][_BOARD_SIZE];
@@ -23,9 +23,9 @@ int _tileEvents[2][_BOARD_SIZE];
 public:
    Board();
    Board(int player_count);
-   void displayTrack(int player_index);
+   void displayTrack(int player_index, int path);
    void initializeBoard();
-   void displayBoard();
+   void displayBoard(int path);
    bool movePlayer(int player_index);
    int getPlayerPosition(int player_index) const;
    string getTileColor(int player_index) const; 
@@ -34,6 +34,7 @@ public:
     int getEventForTile(int tileIndex);
     void assignEventsToTiles();
     void executeEvent (int eventNumber, char tileColor);
+    int editPlayerIdx(int input);
 };
 
 

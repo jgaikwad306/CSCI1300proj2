@@ -1,5 +1,6 @@
 // With Joel Gaikwad 
 
+#include "Game.h"
 #include "Board.h"
 #include "Tile.h"
 #include <cstdlib> // For rand() and srand()
@@ -153,7 +154,7 @@ void Board::initializeTiles(int player_index) {
      _player_count = 1;
 
      // Initialize player position
-     _player_position[0] = 0;
+     _player_position[_player_count] = 0;
 
      // Initialize tiles
      //initializeTiles();
@@ -190,7 +191,7 @@ bool Board::isPlayerOnTile(int player_index, int pos)
     return false;
 }
 
-void Board::displayTile(int player_index, int pos)
+void Board::displayTile(int player_index, int pos, int path)
 {
     string space = "                                       ";
     string color = "";
@@ -234,7 +235,31 @@ void Board::displayTile(int player_index, int pos)
 
      if (player == true)
     {
-        cout << color << "|" << (player_index + 1) << "|" << RESET;
+       
+
+       
+        switch(path){
+            case 1:
+            cout << color << "|" << (player_index + 1) << "|" << RESET;
+            break;
+
+            case 2:
+            cout << color << "|" << (player_index + 1) << "|" << RESET;
+            break;
+
+            case 3:
+            cout << color << "|" << (player_index + 1)<< "&" << (player_index + 2)<<"|" << RESET;
+            break;
+
+            case 4:
+            cout << color << "| |" << RESET;
+            break;
+
+            case 5:
+            cout << color << "|" << (player_index )<< "&" << (player_index + 1)<<"|" << RESET;
+            break;
+        }
+        
     }
     else
     {
@@ -242,23 +267,26 @@ void Board::displayTile(int player_index, int pos)
     }
 }
 
-void Board::displayTrack(int player_index)
+void Board::displayTrack(int player_index, int path)
 {
     for (int i = 0; i < _BOARD_SIZE; i++)
     {
-        displayTile(player_index, i);
+        displayTile(player_index, i, path + i);
     }
     cout << endl;
 }
 
-void Board::displayBoard()
+void Board::displayBoard(int path)
 {
-    for (int i = 0; i < 2; i++)
+   
+    for (int i = 0; i < _MAX_PLAYERS; i++)
     {
-        displayTrack(i);
+
+        displayTrack(i, path+i);
         if (i == 0) {
             cout << endl;  // Add an extra line between the two lanes
         }
+        
     }
 }
 
@@ -399,4 +427,10 @@ void Board::executeEvent(int eventNumber, char tileColor) {
             cout << "Invalid tile color." << endl;
             break;
     }
+}
+
+int Board::editPlayerIdx(int input){
+    int position = _player_position[input];
+    return position;
+
 }
