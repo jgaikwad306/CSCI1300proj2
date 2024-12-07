@@ -6,6 +6,7 @@ class Game
 {
 private:
     Player _player[5];
+    Player _advisor[5];
     int _num_players;
 
 public:
@@ -15,6 +16,7 @@ public:
     void loadAdvisors();
     void welcome();
     void menu();
+    
 };
 
 #endif
